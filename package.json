@@ -1,0 +1,30 @@
+{
+  "name": "checkvision",
+  "version": "1.0.0",
+  "description": "AI-Powered Check Analysis Application using Google Gemini AI",
+  "main": "app.js",
+  "scripts": {
+    "start": "http-server -p 3000 -o",
+    "serve": "http-server -p 3000 -c-1 -o",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ai",
+    "check-analysis",
+    "gemini-ai",
+    "react",
+    "image-processing",
+    "ocr",
+    "fintech"
+  ],
+  "author": "Nandhayogesh",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nandhayogesh/CheckVision.git"
+  },
+  "homepage": "https://github.com/nandhayogesh/CheckVision",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
