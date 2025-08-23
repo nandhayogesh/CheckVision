@@ -38,3 +38,8 @@ app_backup.js
 
 # Logs
 *.log
+
+# Root static files (moved to public/)
+/index.html
+/style.css
+/app.js

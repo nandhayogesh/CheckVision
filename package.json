@@ -4,10 +4,10 @@
   "description": "Enterprise AI-Powered Check Analysis System - Advanced document processing with Google Gemini AI integration, demonstrating modern web development and machine learning capabilities",
   "main": "app.js",
   "scripts": {
-    "start": "http-server -p 3000 -o",
+    "start": "http-server public -p 3000 -o",
     "dev": "vercel dev",
-    "serve": "http-server -p 3000 -c-1 -o",
-    "build": "echo 'Production build - files ready for deployment'",
+    "serve": "http-server public -p 3000 -c-1 -o",
+    "build": "echo 'Static files ready in public directory'",
     "deploy": "vercel --prod",
     "deploy-preview": "vercel",
     "test": "echo 'Test suite placeholder - ready for implementation'",
