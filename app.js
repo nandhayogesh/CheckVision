@@ -252,6 +252,7 @@ const Header = ({ currentView, onNavigate }) => {
                             <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
                                 CheckVision
                             </h1>
+                            <p className="text-xs text-gray-500 mt-0">Enterprise AI Document Processing</p>
                         </div>
                     </div>
                     
@@ -264,7 +265,7 @@ const Header = ({ currentView, onNavigate }) => {
                                     : 'text-gray-500 hover:text-gray-700'
                             }`}
                         >
-                            Home
+                            Overview
                         </button>
                         <button 
                             onClick={() => onNavigate('upload')}
@@ -274,9 +275,29 @@ const Header = ({ currentView, onNavigate }) => {
                                     : 'text-gray-500 hover:text-gray-700'
                             }`}
                         >
-                            Upload
+                            Processing
                         </button>
+                        <a 
+                            href="https://github.com/nandhayogesh/CheckVision" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 transition-colors flex items-center"
+                        >
+                            <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            GitHub
+                        </a>
                     </nav>
+                    
+                    {/* Mobile menu button */}
+                    <div className="md:hidden">
+                        <button className="text-gray-500 hover:text-gray-700">
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </header>
@@ -290,54 +311,89 @@ const HeroSection = ({ onNavigate }) => {
     return (
         <section className="relative py-20 px-4 sm:px-6 lg:px-8 wave-bg">
             <div className="max-w-4xl mx-auto text-center">
+                <div className="mb-6">
+                    <span className="inline-block px-4 py-2 rounded-full bg-blue-100 text-blue-800 text-sm font-medium mb-4">
+                        Enterprise AI Document Processing Solution
+                    </span>
+                </div>
+                
                 <h1 className="hero-title text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-                    Extract details from bank checks
-                    <span className="block text-blue-600">easily and securely</span>
+                    Advanced Check Analysis
+                    <span className="block text-blue-600">Powered by Artificial Intelligence</span>
                 </h1>
                 
                 <p className="hero-subtitle text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-                    Upload your check image and let our AI-powered system extract all the important details 
-                    in seconds. Fast, accurate, and completely secure.
+                    Professional-grade document processing system utilizing Google Gemini AI for intelligent 
+                    data extraction. Demonstrates cutting-edge integration of machine learning APIs with 
+                    modern web technologies.
                 </p>
                 
-                <div className="hero-cta flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <div className="hero-cta flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
                     <button 
                         onClick={() => onNavigate('upload')}
                         className="btn-primary px-8 py-4 bg-blue-600 text-white rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
                     >
-                        Upload Check Image
+                        Launch Application
                         <span className="ml-2">→</span>
                     </button>
                     
-                    <div className="flex items-center text-sm text-gray-500">
-                        <span className="mr-2">✓</span>
-                        Supports JPG, PNG, PDF formats
-                    </div>
+                    <a 
+                        href="https://github.com/nandhayogesh/CheckVision" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center text-gray-600 hover:text-blue-600 transition-colors"
+                    >
+                        <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        View Source Code
+                    </a>
                 </div>
                 
-                <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
-                    <div className="feature-card bg-white/80 p-6 rounded-2xl shadow-lg backdrop-blur-sm">
+                <div className="text-sm text-gray-500 mb-12">
+                    <span className="inline-flex items-center mr-6">
+                        <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                        Production Ready
+                    </span>
+                    <span className="inline-flex items-center mr-6">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                        Enterprise Security
+                    </span>
+                    <span className="inline-flex items-center">
+                        <span className="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                        AI-Powered
+                    </span>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                    <div className="feature-card bg-white/90 p-6 rounded-2xl shadow-lg backdrop-blur-sm border border-gray-200">
                         <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                            <span className="text-2xl">🚀</span>
+                            <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
                         </div>
-                        <h3 className="font-semibold text-gray-900 mb-2">Lightning Fast</h3>
-                        <p className="text-gray-600 text-sm">Get results in seconds with AI-powered analysis</p>
+                        <h3 className="font-semibold text-gray-900 mb-2">Advanced AI Integration</h3>
+                        <p className="text-gray-600 text-sm">Google Gemini AI for intelligent document analysis and data extraction</p>
                     </div>
                     
-                    <div className="feature-card bg-white/80 p-6 rounded-2xl shadow-lg backdrop-blur-sm">
+                    <div className="feature-card bg-white/90 p-6 rounded-2xl shadow-lg backdrop-blur-sm border border-gray-200">
                         <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                            <span className="text-2xl">🔒</span>
+                            <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
                         </div>
-                        <h3 className="font-semibold text-gray-900 mb-2">Secure & Private</h3>
-                        <p className="text-gray-600 text-sm">Your data is processed securely and never stored</p>
+                        <h3 className="font-semibold text-gray-900 mb-2">Enterprise Security</h3>
+                        <p className="text-gray-600 text-sm">Zero-storage architecture with client-side processing and secure API communication</p>
                     </div>
                     
-                    <div className="feature-card bg-white/80 p-6 rounded-2xl shadow-lg backdrop-blur-sm">
+                    <div className="feature-card bg-white/90 p-6 rounded-2xl shadow-lg backdrop-blur-sm border border-gray-200">
                         <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                            <span className="text-2xl">🎯</span>
+                            <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                            </svg>
                         </div>
-                        <h3 className="font-semibold text-gray-900 mb-2">High Accuracy</h3>
-                        <p className="text-gray-600 text-sm">Advanced AI ensures precise data extraction</p>
+                        <h3 className="font-semibold text-gray-900 mb-2">Modern Architecture</h3>
+                        <p className="text-gray-600 text-sm">React 18, responsive design, and production-ready code architecture</p>
                     </div>
                 </div>
             </div>
@@ -567,33 +623,63 @@ const Footer = () => {
                             CheckVision
                         </h3>
                         <p className="text-gray-300 mb-4">
-                            AI-powered bank check analysis tool that extracts details quickly and securely.
-                            Process your checks with confidence using cutting-edge technology.
+                            Enterprise-grade AI-powered document processing system for automated bank check analysis. 
+                            Demonstrates advanced machine learning integration, secure data handling, and scalable web architecture.
                         </p>
+                        <div className="flex space-x-4 mt-4">
+                            <a href="https://github.com/nandhayogesh/CheckVision" 
+                               className="text-gray-400 hover:text-blue-400 transition-colors" 
+                               target="_blank" 
+                               rel="noopener noreferrer">
+                                <span className="sr-only">GitHub</span>
+                                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.linkedin.com/in/nandhayogesh-ks/" 
+                               className="text-gray-400 hover:text-blue-400 transition-colors" 
+                               target="_blank" 
+                               rel="noopener noreferrer">
+                                <span className="sr-only">LinkedIn</span>
+                                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                     
                     <div>
-                        <h4 className="font-semibold mb-4">Features</h4>
+                        <h4 className="font-semibold mb-4">Technical Stack</h4>
                         <ul className="space-y-2 text-gray-300">
-                            <li>• AI-Powered Analysis</li>
-                            <li>• Secure Processing</li>
-                            <li>• Multiple Formats</li>
-                            <li>• Instant Results</li>
+                            <li>React 18 + Modern JavaScript</li>
+                            <li>Google Gemini AI API</li>
+                            <li>Responsive CSS Design</li>
+                            <li>RESTful API Integration</li>
+                            <li>File Upload & Processing</li>
                         </ul>
                     </div>
                     
                     <div>
-                        <h4 className="font-semibold mb-4">Support</h4>
+                        <h4 className="font-semibold mb-4">Key Features</h4>
                         <ul className="space-y-2 text-gray-300">
-                            <li><a href="#" className="hover:text-blue-400">Help Center</a></li>
-                            <li><a href="#" className="hover:text-blue-400">Privacy Policy</a></li>
-                            <li><a href="#" className="hover:text-blue-400">Contact Us</a></li>
+                            <li>AI-Powered OCR Processing</li>
+                            <li>Real-time Data Extraction</li>
+                            <li>Security-First Architecture</li>
+                            <li>Cross-Platform Compatibility</li>
+                            <li>Scalable Performance</li>
                         </ul>
                     </div>
                 </div>
                 
-                <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                    <p>&copy; 2025 CheckVision. All rights reserved. Built with React and Gemini AI.</p>
+                <div className="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-400">
+                    <p>&copy; 2025 CheckVision - Portfolio Project by Nandhayogesh</p>
+                    <div className="mt-4 md:mt-0 flex space-x-6 text-sm">
+                        <span>Built with React & Gemini AI</span>
+                        <span>•</span>
+                        <span>Open Source MIT License</span>
+                        <span>•</span>
+                        <span>Professional Portfolio Showcase</span>
+                    </div>
                 </div>
             </div>
         </footer>

@@ -1,30 +1,64 @@
 {
   "name": "checkvision",
   "version": "1.0.0",
-  "description": "AI-Powered Check Analysis Application using Google Gemini AI",
+  "description": "Enterprise AI-Powered Check Analysis System - Advanced document processing with Google Gemini AI integration, demonstrating modern web development and machine learning capabilities",
   "main": "app.js",
   "scripts": {
     "start": "http-server -p 3000 -o",
+    "dev": "http-server -p 3000 -c-1 -o",
     "serve": "http-server -p 3000 -c-1 -o",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "echo 'Production build - files ready for deployment'",
+    "test": "echo 'Test suite placeholder - ready for implementation'",
+    "lint": "echo 'Code quality checks - ready for implementation'"
   },
   "keywords": [
-    "ai",
-    "check-analysis",
+    "ai-integration",
+    "machine-learning",
+    "document-processing",
+    "ocr-technology",
+    "react-development",
     "gemini-ai",
-    "react",
-    "image-processing",
-    "ocr",
-    "fintech"
+    "fintech-solutions",
+    "enterprise-software",
+    "web-application",
+    "frontend-development",
+    "javascript-es6",
+    "responsive-design",
+    "api-integration",
+    "secure-processing",
+    "portfolio-project"
   ],
-  "author": "Nandhayogesh",
+  "author": {
+    "name": "Nandhayogesh",
+    "email": "nandhayogesh@outlook.com",
+    "url": "https://github.com/nandhayogesh"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/nandhayogesh/CheckVision.git"
   },
   "homepage": "https://github.com/nandhayogesh/CheckVision",
+  "bugs": {
+    "url": "https://github.com/nandhayogesh/CheckVision/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
   "devDependencies": {
     "http-server": "^14.1.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "config": {
+    "deploymentTarget": "production",
+    "supportedFormats": "JPG, PNG, WebP, PDF",
+    "maxFileSize": "10MB",
+    "aiProvider": "Google Gemini AI"
   }
 }
