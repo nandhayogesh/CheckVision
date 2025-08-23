@@ -5,9 +5,11 @@
   "main": "app.js",
   "scripts": {
     "start": "http-server -p 3000 -o",
-    "dev": "http-server -p 3000 -c-1 -o",
+    "dev": "vercel dev",
     "serve": "http-server -p 3000 -c-1 -o",
     "build": "echo 'Production build - files ready for deployment'",
+    "deploy": "vercel --prod",
+    "deploy-preview": "vercel",
     "test": "echo 'Test suite placeholder - ready for implementation'",
     "lint": "echo 'Code quality checks - ready for implementation'"
   },

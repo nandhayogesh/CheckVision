@@ -14,8 +14,9 @@ const { useState, useEffect, useContext, createContext, useRef } = React;
 const CONFIG = {
     SUPPORTED_FORMATS: ["image/jpeg", "image/png", "image/webp", "application/pdf"],
     MAX_FILE_SIZE: 10485760, // 10MB
-    GEMINI_API_KEY: "AIzaSyBUBd3LBfUnJcXcArpV370Zgt9yuG0zUx8",
-    GEMINI_API_URL: "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
+    API_BASE_URL: window.location.origin, // Use current domain for API calls
+    ANALYZE_ENDPOINT: "/api/analyze",
+    TEST_ENDPOINT: "/api/test"
 };
 
 // =====================================
@@ -65,25 +66,21 @@ const geminiAPI = {
      */
     testConnection: async () => {
         try {
-            const requestBody = {
-                contents: [{
-                    parts: [{ text: "Return exactly this JSON: {\"test\": \"success\"}" }]
-                }]
-            };
-
-            const response = await fetch(`${CONFIG.GEMINI_API_URL}?key=${CONFIG.GEMINI_API_KEY}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(requestBody)
+            console.log('🔍 Testing API connection...');
+            
+            const response = await fetch(`${CONFIG.API_BASE_URL}${CONFIG.TEST_ENDPOINT}`, {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
             });
 
             if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(`API Error: ${errorData.error?.message || 'Connection failed'}`);
+                throw new Error(`API Error: ${response.status} ${response.statusText}`);
             }
 
-            console.log('✅ API connection successful');
-            return true;
+            const data = await response.json();
+            console.log('✅ API connection successful:', data);
+            
+            return data.success && data.apiKeyConfigured;
         } catch (error) {
             console.error('❌ API connection failed:', error);
             return false;
@@ -91,7 +88,7 @@ const geminiAPI = {
     },
 
     /**
-     * Analyze check image using Gemini AI
+     * Analyze check image using backend API
      */
     analyzeImage: async (imageFile) => {
         console.log('🔍 Starting analysis for:', imageFile.name);
@@ -105,103 +102,29 @@ const geminiAPI = {
                 reader.readAsDataURL(imageFile);
             });
 
-            // Create optimized prompt for check analysis
-            const prompt = `Analyze this check image and extract information. Return ONLY a valid JSON object:
-
-{
-  "accountHolder": "account holder name or null",
-  "accountNumber": "account number or null",
-  "routingNumber": "routing number or null", 
-  "bankName": "bank name or null",
-  "ifscCode": "IFSC code or null",
-  "micrCode": "MICR code or null",
-  "checkNumber": "check number or null",
-  "date": "date or null",
-  "amountNumbers": "numerical amount or null",
-  "amountWords": "written amount or null",
-  "signatureStatus": "Present or Absent",
-  "memo": "memo/purpose or null",
-  "address": "address or null"
-}
-
-Return ONLY the JSON object, no additional text.`;
-
-            // Make API request
-            const requestBody = {
-                contents: [{
-                    parts: [
-                        { text: prompt },
-                        {
-                            inline_data: {
-                                mime_type: imageFile.type,
-                                data: base64Image
-                            }
-                        }
-                    ]
-                }]
-            };
-
-            const response = await fetch(`${CONFIG.GEMINI_API_URL}?key=${CONFIG.GEMINI_API_KEY}`, {
+            // Make request to backend API
+            const response = await fetch(`${CONFIG.API_BASE_URL}${CONFIG.ANALYZE_ENDPOINT}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(requestBody)
+                body: JSON.stringify({
+                    imageData: base64Image,
+                    mimeType: imageFile.type
+                })
             });
 
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(`API Error: ${errorData.error?.message || 'Failed to analyze image'}`);
+                throw new Error(errorData.error || `HTTP Error: ${response.status}`);
             }
 
-            // Parse response
             const data = await response.json();
-            const generatedText = data.candidates?.[0]?.content?.parts?.[0]?.text;
             
-            if (!generatedText) {
-                throw new Error('No response generated from the API');
+            if (!data.success) {
+                throw new Error(data.error || 'Analysis failed');
             }
-
-            // Extract and parse JSON
-            let extractedData;
-            try {
-                extractedData = JSON.parse(generatedText);
-            } catch (parseError) {
-                // Try to extract JSON from markdown code blocks
-                const jsonMatch = generatedText.match(/```json\s*([\s\S]*?)\s*```/) || 
-                                 generatedText.match(/\{[\s\S]*\}/);
-                
-                if (jsonMatch) {
-                    extractedData = JSON.parse(jsonMatch[jsonMatch.length - 1]);
-                } else {
-                    throw new Error('Failed to parse API response');
-                }
-            }
-
-            // Process and normalize data
-            const processedData = {
-                accountHolder: extractedData.accountHolder || "Not found",
-                accountNumber: extractedData.accountNumber || "Not found",
-                routingNumber: extractedData.routingNumber || "Not found",
-                bankName: extractedData.bankName || "Not found",
-                ifscCode: extractedData.ifscCode || "Not found",
-                micrCode: extractedData.micrCode || "Not found",
-                checkNumber: extractedData.checkNumber || "Not found",
-                date: extractedData.date || "Not found",
-                amountNumbers: extractedData.amountNumbers || "Not found",
-                amountWords: extractedData.amountWords || "Not found",
-                signatureStatus: extractedData.signatureStatus || "Not detected",
-                memo: extractedData.memo || "Not found",
-                address: extractedData.address || "Not found"
-            };
 
             console.log('✅ Analysis completed successfully');
-            return {
-                success: true,
-                data: {
-                    ...processedData,
-                    extractionConfidence: 95,
-                    processingTime: Date.now()
-                }
-            };
+            return data;
 
         } catch (error) {
             console.error('❌ Analysis failed:', error);
